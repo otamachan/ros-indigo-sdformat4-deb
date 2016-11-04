@@ -1,0 +1,4 @@
+repo: 17049bd77df5bd6cd56a76edba4a54afb5647740
+node: e5ac5aaa49f240725a0dd18bca2f5a7d16aaeeab
+branch: sdf4
+tag: sdformat4_4.2.0
