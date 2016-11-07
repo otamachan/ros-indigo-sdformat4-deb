@@ -1,0 +1,47 @@
+sdformat4 (4.2.0-1~trusty) trusty; urgency=medium
+
+  * sdformat4 4.2.0-1 release
+
+ -- Nate Koenig <nate@osrfoundation.org>  Mon, 10 Oct 2016 14:49:57 -0700
+
+sdformat4 (4.1.1-1~trusty) trusty; urgency=medium
+
+  * sdformat4 4.1.1-1 release
+
+ -- Nate Koenig <nate@osrfoundation.org>  Fri, 08 Jul 2016 13:12:31 -0700
+
+sdformat4 (4.1.0-1~trusty) trusty; urgency=medium
+
+  * sdformat4 4.1.0-1 release
+
+ -- Nate Koenig <nate@osrfoundation.org>  Fri, 01 Apr 2016 10:49:56 -0700
+
+sdformat4 (4.0.0-1~trusty) trusty; urgency=medium
+
+  * sdformat4 4.0.0-1 release
+
+ -- Jose Luis Rivero <jrivero@osrfoundation.org>  Wed, 13 Jan 2016 02:07:32 +0100
+
+sdformat4 (4.0.0~pre3-1~trusty) trusty; urgency=medium
+
+  * sdformat4 4.0.0~pre3-1 release
+
+ -- Jose Luis Rivero <jrivero@osrfoundation.org>  Mon, 11 Jan 2016 23:49:28 +0100
+
+sdformat4 (4.0.0~pre2-1~trusty) trusty; urgency=medium
+
+  * sdformat4 4.0.0~pre2-1 release
+
+ -- Nate Koenig <nate@osrfoundation.org>  Wed, 02 Dec 2015 13:23:49 -0800
+
+sdformat4 (4.0.0~pre1-1~trusty) trusty; urgency=medium
+
+  * sdformat4 4.0.0~pre1-1 release
+
+ -- Jose Luis Rivero <jrivero@osrfoundation.org>  Tue, 01 Dec 2015 01:53:08 +0100
+
+sdformat4 (3.99.0-1~trusty) trusty; urgency=medium
+
+  * Stub for nightly releases. No sdformat4 official release yet
+
+ -- Jose Luis Rivero <jrivero@osrfoundation.org>  Wed, 21 Oct 2015 00:48:42 +0200
