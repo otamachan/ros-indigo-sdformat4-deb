@@ -1,0 +1,37 @@
+language: general
+install:
+- sudo apt-get update
+- sudo apt-get install -y cowbuilder git-buildpackage debhelper ubuntu-keyring
+- |
+  cat << EOF >> ${HOME}/.pbuilderrc
+  MIRRORSITE="http://us-central1.gce.archive.ubuntu.com/ubuntu"
+  COMPONENTS="main universe"
+  OTHERMIRROR="deb http://packages.osrfoundation.org/gazebo/ubuntu-stable trusty main"
+  DISTRIBUTION=trusty
+  BUILDRESULT=${HOME}/results
+  HOOKDIR="${HOME}/.pbuilder-hooks/"
+- mkdir -p ${HOME}/.pbuilder-hooks
+- |
+  cat << EOF >> ${HOME}/.pbuilder-hooks/G10addkey
+  #!/bin/sh
+  apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys D2486D2DD83DB69272AFE98867170598AF249743
+- chmod +x ${HOME}/.pbuilder-hooks/G10addkey
+- cp -i /etc/git-buildpackage/gbp.conf ${HOME}/.gbp.conf
+- sed -i "s/^#\(git-pbuilder-options = '\)\(.*\)'/\1--debbuildopts \"-sa\"'/g" ${HOME}/.gbp.conf
+- mkdir -p ${HOME}/results
+- sudo cowbuilder --create --distribution trusty --basepath /var/cache/pbuilder/base-trusty.cow
+  --debootstrapopts --keyring=/usr/share/keyrings/ubuntu-archive-keyring.gpg
+script:
+- sudo git-buildpackage --git-ignore-branch --git-pbuilder --git-export-dir=${HOME}/results  --git-ignore-new --git-dist=trusty
+- sudo chmod 666 ${HOME}/results/*
+deploy:
+  provider: releases
+  api_key:
+    secure: w2J4LGUWtsnCyEtX5WJWyDmmoJjM6T1kE6XSHUY7heSFowEtdLTw7iIU4pB/MxT0mvB9+G60f7udkDBez16yQLWfta4Kl91pLabosM4gAbh/VmZli0Kk15b60PGbhEIETOcUkrd4DVNmASGLWE6mwqX2GJXRg9LX0IfN2Hzxghu6LsbGbCAnO7xnn0HLkkXtrVFGBF4wo3z0XXc8oeYYckcC8nOzhmhj9B1PLxiw0ep5OWUxlo3+HxwMlVSmdC2DxiOVHjedxKtAI6FOnGlvAanHm1azik84L2CTQnujqlyhW6YK82/F5Jh0crkm+j4PxjfaiQVFmGmnpVZqD7aJ9buhn86Ul5nqtuEm/6vQnD0i2NlKNHUwHpjaNFG3iy8aqTNuUX+qXoIxnOAkjpor/gJxy1Xu+7h6lX/gGue+C48TFRii+5ibgmyDYpUtVQUwQC7c1OPSf1VW9eHPhfRcg5ws4ZMvoir9agIeX5IGok1UzTQJVBkDkVrzm5fRwud11p7JUS58/rfmLSYwWRufjgCh0AxAiLx5pBNXmCMOjgq4tENvK2qWswIzcZAzDgE4SzIiReMyQaxCp25D6HVrJQu6qu/W8Nm5tjtKJUIzDondgLj/L/PJHllFvQ5kWnsV4j+cMf44hUsoI0gyQbZOIBQLQlibCMcgtFzncDk3Q3Y=
+  file_glob: true
+  file: ${HOME}/results/*.deb
+  skip_cleanup: true
+  all_branches: true
+  on:
+    repo: otamachan/ros-indigo-sdformat4-deb
+    tags: true
